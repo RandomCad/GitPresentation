@@ -1,42 +1,42 @@
+% Titel
+% Mathieu de Montmollin, Bernhard Lindner
+% 09.10.2024
+
 # Einführung
 # Geschichte
 # Technische Grundlagen
-# Vorbereitung
-## git-config
-## git-clone
-# lineares VC
+# Vorbereitung - git-config
+# Vorbereitung - git-clone
 <!-- essentials -->
-## git-init
-## git-status
-## git-add und git-rm
-## git-commit
-## .gitignore
-## git-diff
-## git-log
+# lineares VC - git-init
+# lineares VC - git-status
+# lineares VC - git-add und git-rm
+# lineares VC - git-commit
+# lineares VC - .gitignore
+# lineares VC - git-diff
+# lineares VC - git-log
 <!-- Nützlich -->
-## git-tag
-## git-blame
-## git-clean
-## git-config
+# lineares VC - git-tag
+# lineares VC - git-blame
+# lineares VC - git-clean
+# lineares VC - git-config
 <!-- undo -->
-## git-reset
-## git-restor
-## git-revert
+# lineares VC - git-reset
+# lineares VC - git-restor
+# lineares VC - git-revert
 <!-- stash -->
-## git-stash
+# lineares VC - git-stash
 
-# branching
-## git-branch
-## git-checkout
-## git-switch
-## git-merge
-## git-rebase
-## git-cherry-pick
+# branching - git-branch
+# branching - git-checkout
+# branching - git-switch
+# branching - git-merge
+# branching - git-rebase
+# branching - git-cherry-pick
 
-# remotes
-## git-clone
-## git-fetch
-## git-pull
-## git-push
-## git-remote
-### unrelated history
+# remotes - git-clone
+# remotes - git-fetch
+# remotes - git-pull
+# remotes - git-push
+# remotes - git-remote
+# remotes - unrelated history
