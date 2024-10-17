@@ -41,9 +41,23 @@ erklärung was wir wann machen wollen
 ::: notes
 * Git ist dabei bei der Funktionsweise an BitKeeper und Monoton angelehnt
 * erster releas war am 21 December 2005
+* bennenung: Git als kunstwort von Linus entwickelt bedeutet soviel wie unangenehme Person
 :::
 
 # Technische Grundlagen
+
+::: notes
+* Git ist kein Monolitisches Projekt -> besteht aus vielen einzelteilen, welche zusammen arbeiten und Verwendet werden können
+* Besitzt zum teile Zwei unteschiedliche Bestandteile, welche sehr ähnlich sind/ähliche aufgaben erfüllen
+* Git ist intern keine datenbank sondern ähnelt viel mehr einem Dateisystem
+* Dateitypen:
+    * Blob -> Ist der rohe inhalt einer in git abgelegten Datei. Wird ausschließlich über eine SHA1-Hash identifiziert. -> Git ist der Inhalt und das Format follkommen egal
+    * Tree -> Entsprichd einen Ordner. Ein Tree beinhaltet referenzen auf andere Trees oder Blobs -> mit diesem objekt wäre theoretisch eine Versionsverwaltung bereits möglich -> erzuegung eines neuen Trees für jeden commit
+    * commit object -> Dient dazu zu speichern, wer, wann, warum eine veränderung gespeichert hat -> Referenziert dabei einen Bestimmten Tree und potenzielle Parent Commits -> können mehrere Sein -> merging
+    * Tag -> ähnelt einem Commit sehr stark -> referenziert irgende ein anderes objekt dauerhaft mit angabe wer, wann, weiso
+    * Packs -> sind komprimierte versionen aller anderer Viles -> Mehrere Files werden zusammen betrachtet. Alle files, welche ähnliche größe und inhalt haben werden mithilfe von diffs komprimiert -> ob diese dabei tatsechlich von einander abstammen ist git dabei egal -> git gc
+    * Physisch werden die unterschiedlichen Datentypen sehr ähnlich gespeichert. Auf dieses wird hier nicht eingegangen
+:::
 
 # Vorbereitung - git-config
 # Vorbereitung - git-clone
