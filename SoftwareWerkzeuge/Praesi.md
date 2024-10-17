@@ -45,6 +45,9 @@ erklärung was wir wann machen wollen
 :::
 
 # Technische Grundlagen
+Git ist kein wirkliches VCS. Eigentlich ist Git eine Filesystem mit einer VCS schnitstelle.  
+Heutzuteage helfen viele kleinere und größer Programme Git als VCS zu verwendet.
+* Git ist kein Monolitisches Projekt sonderen besteht aus vielen einzelnen Programmen
 
 ::: notes
 * Git ist kein Monolitisches Projekt -> besteht aus vielen einzelteilen, welche zusammen arbeiten und Verwendet werden können
@@ -57,6 +60,7 @@ erklärung was wir wann machen wollen
     * Tag -> ähnelt einem Commit sehr stark -> referenziert irgende ein anderes objekt dauerhaft mit angabe wer, wann, weiso
     * Packs -> sind komprimierte versionen aller anderer Viles -> Mehrere Files werden zusammen betrachtet. Alle files, welche ähnliche größe und inhalt haben werden mithilfe von diffs komprimiert -> ob diese dabei tatsechlich von einander abstammen ist git dabei egal -> git gc
     * Physisch werden die unterschiedlichen Datentypen sehr ähnlich gespeichert. Auf dieses wird hier nicht eingegangen
+Quelle: https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain + 4 oder so Kapitel
 :::
 
 # Vorbereitung - git-config
