@@ -19,23 +19,28 @@ Begrüsung
 erklärung was wir wann machen wollen
 :::
 # Geschichte
-* Entwicklung des Linux-Kernals seit ... mit BitKeeper
-* 2005 entzieht BitKeeper den Linux entwicklern das Recht das Programm zu verwenden
-* Monoton und andere Optionen werden von Linus Torwald nicht als guter ersatzt angesehen
-* Ab April 2005 entwickelt Lius Torwald Git als erstatz
+* Entwicklung des Linux-Kernals seit 2002 mit BitKeeper
+* 2005 sucht Linus Torwald einen neue Vesions Verwaltungs Software
+* Monoton und andere damaliege Optionen werden von Linus Torwald nicht als guter ersatzt angesehen
+* Ab 3 April 2005 entwickelt Lius Torwald Git als erstatz
+::: notes
+* Geschichte von Git begann am 23 Feruar 2005 als dem autor von BitKeeper der Verwendeten VSC bekannt wurde, das seine software reversengeniert wird
+* öffenlic wurde die kommende veränderung am 6 April 2005 mit Mail von Linus im Kernalforum in welcher er angibt nach einer Alternative zu suchen (Check)
+* bereits drei tage forher begann Linus mit der entwicklung von Git (https://marc.info/?l=git&m=117254154130732)
+* Am 7 April wurde der erste commit mit git durchgeführt
+* Am 16 April wurde der erste Linux Kernal kommit mitels git durchgeführt
+* Wenige Tage später der erste merge (https://marc.info/?l=git&m=117254154130732)
+:::
 
 # Geschichte
 * Im Juni 2005 wird der Linux-Kernal 2.6.12 über git ausgeliefert
 * Am 21.12.2005 wird die Version 1.0 von git veröffentlicht
 * Bis heute wird weiter an git entwickelt
+* Aktuelle version ist 2.47
 
 ::: notes
-* erntwickelt von Linus Torwald im April 2005
-* Als reaktion auf das ende der freien verwendung von BitKeeper
-* Aus der benötigung einer neuen Versionsverwlatung endstand git
 * Git ist dabei bei der Funktionsweise an BitKeeper und Monoton angelehnt
 * erster releas war am 21 December 2005
-* spätestens seit dem 16 Jnui wurde git für den Linux kernel verwendet, welche an diesem tag über git veröffentlicht wurde
 :::
 
 # Technische Grundlagen
