@@ -46,13 +46,26 @@ erklärung was wir wann machen wollen
 
 # Technische Grundlagen
 Git ist kein wirkliches VCS. Eigentlich ist Git eine Filesystem mit einer VCS schnitstelle.  
-Heutzuteage helfen viele kleinere und größer Programme Git als VCS zu verwendet.
+Heutzuteage helfen viele kleinere und größer Programme Git als VCS zu verwendet.  
+
 * Git ist kein Monolitisches Projekt sonderen besteht aus vielen einzelnen Programmen
 
 ::: notes
+* Git ist fon der Implementeriung kein VCS sondern ein Dateisystem -> über dieses kann VSC gemacht werden
+* Git ist intern keine datenbank sondern ähnelt viel mehr einem Dateisystem
 * Git ist kein Monolitisches Projekt -> besteht aus vielen einzelteilen, welche zusammen arbeiten und Verwendet werden können
 * Besitzt zum teile Zwei unteschiedliche Bestandteile, welche sehr ähnlich sind/ähliche aufgaben erfüllen
-* Git ist intern keine datenbank sondern ähnelt viel mehr einem Dateisystem
+:::
+
+# Technische Grundlagen - Git Dateitypen
+
+* Blob
+* Tree
+* commit
+* Tag
+* Pack
+
+::: notes
 * Dateitypen:
     * Blob -> Ist der rohe inhalt einer in git abgelegten Datei. Wird ausschließlich über eine SHA1-Hash identifiziert. -> Git ist der Inhalt und das Format follkommen egal
     * Tree -> Entsprichd einen Ordner. Ein Tree beinhaltet referenzen auf andere Trees oder Blobs -> mit diesem objekt wäre theoretisch eine Versionsverwaltung bereits möglich -> erzuegung eines neuen Trees für jeden commit
@@ -62,6 +75,8 @@ Heutzuteage helfen viele kleinere und größer Programme Git als VCS zu verwende
     * Physisch werden die unterschiedlichen Datentypen sehr ähnlich gespeichert. Auf dieses wird hier nicht eingegangen
 Quelle: https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain + 4 oder so Kapitel
 :::
+
+Do something with (this)[https://en.wikipedia.org/wiki/Git#/media/File:Git_operations.svg]
 
 # Vorbereitung - git-config
 # Vorbereitung - git-clone
