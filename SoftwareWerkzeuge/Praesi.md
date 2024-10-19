@@ -78,11 +78,39 @@ Quelle: https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain + 4 
 
 # Technische Grundlagen - Referenzen
 
-Do something with ![this](https://en.wikipedia.org/wiki/Git#/media/File:Git_operations.svg)
+# Technische Grundlagen - Datenfluss in Git
+
+:::::::::::::: {.columns}  
+::: {.column width="50%"}
+Es gibt drei Datenebnen:
+
+* Der git server
+* Das locale Git-Repo
+* Der momentan ausgecheckte Stand auch bezeichnet als Workingtree
+
+:::
+::: {.column width="50%"}
+![By Daniel Kinzler - Own work, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=25223536](GitDataflow.png)
+:::
+::::::::::::::
+
+::: notes
+erklärung, wei der Datenfluss bei Git ist:
+* Drei orte, an welchen daten liegen
+    * Remote(server (potenziel gestuft))
+    * Git Filesystem (internals) -> gesammte historie
+    * Workingtree -> Präsentation des Momentan standes im Dateisystem -> kann/wird bearbeitet
+* Wie bewegen sich daten von einem Ort in den anderen:
+    * Remote -> generelle datenbank
+    * generale datenbank -> Branches
+    * Branch -> Workingtree : git checkout
+    * Workingtree -> staging : git add
+    * Staging -> Branch : git commit
+:::
 
 ::: notes
 * Nachfolgend werden hauptsechlich Porcelain befehle erleutert -> komplexere befehle
-* Es gibt auch die Plumbing befehle -> komplexere internals
+* Es gibt auch die Plumbing befehle -> komplizierte internals
 :::
 
 # Vorbereitung - git-config
