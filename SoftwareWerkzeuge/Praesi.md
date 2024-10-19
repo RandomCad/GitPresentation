@@ -78,6 +78,15 @@ Quelle: https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain + 4 
 
 # Technische Grundlagen - Referenzen
 
+::: notes
+Referenzen verweisen auf bestimmte Objecte im Dateisystem -> Typischerweise Commits
+Über diese ist ein schnelleres erreichen/bearbeiten mit diesen möglich
+Über diese werden alle Blätter im Commit baum typischerweise beibehalten
+Grundsetzlich gibt es remote und local Refernces
+Remotes verweise auf die ständen im Remote (Server) werden thypischerweise kaum/wenig verwendet.
+Locals sind die thypischerweise verwendeten Referenzen
+:::
+
 # Technische Grundlagen - Datenfluss in Git
 
 :::::::::::::: {.columns}  
@@ -106,6 +115,7 @@ erklärung, wei der Datenfluss bei Git ist:
     * Branch -> Workingtree : git checkout
     * Workingtree -> staging : git add
     * Staging -> Branch : git commit
+* Auf das staging gehen wir beim Commit ein?
 :::
 
 ::: notes
