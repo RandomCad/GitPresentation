@@ -71,12 +71,19 @@ Heutzuteage helfen viele kleinere und größer Programme Git als VCS zu verwende
     * Tree -> Entsprichd einen Ordner. Ein Tree beinhaltet referenzen auf andere Trees oder Blobs -> mit diesem objekt wäre theoretisch eine Versionsverwaltung bereits möglich -> erzuegung eines neuen Trees für jeden commit
     * commit object -> Dient dazu zu speichern, wer, wann, warum eine veränderung gespeichert hat -> Referenziert dabei einen Bestimmten Tree und potenzielle Parent Commits -> können mehrere Sein -> merging
     * Tag -> ähnelt einem Commit sehr stark -> referenziert irgende ein anderes objekt dauerhaft mit angabe wer, wann, weiso
-    * Packs -> sind komprimierte versionen aller anderer Viles -> Mehrere Files werden zusammen betrachtet. Alle files, welche ähnliche größe und inhalt haben werden mithilfe von diffs komprimiert -> ob diese dabei tatsechlich von einander abstammen ist git dabei egal -> git gc
+    * Packs -> sind komprimierte versionen aller anderer Viles -> Mehrere Files werden zusammen betrachtet. Alle files, welche ähnliche größe und inhalt haben werden mithilfe von Delta-Kompression komprimiert -> ob diese dabei tatsechlich von einander abstammen ist git dabei egal -> git gc
     * Physisch werden die unterschiedlichen Datentypen sehr ähnlich gespeichert. Auf dieses wird hier nicht eingegangen
 Quelle: https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain + 4 oder so Kapitel
 :::
 
-Do something with (this)[https://en.wikipedia.org/wiki/Git#/media/File:Git_operations.svg]
+# Technische Grundlagen - Referenzen
+
+Do something with ![this](https://en.wikipedia.org/wiki/Git#/media/File:Git_operations.svg)
+
+::: notes
+* Nachfolgend werden hauptsechlich Porcelain befehle erleutert -> komplexere befehle
+* Es gibt auch die Plumbing befehle -> komplexere internals
+:::
 
 # Vorbereitung - git-config
 # Vorbereitung - git-clone
