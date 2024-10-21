@@ -133,6 +133,7 @@ erklärung, wei der Datenfluss bei Git ist:
 # lineares VC - .gitignore
 # lineares VC - git-diff
 # lineares VC - git-log
+--graph option
 <!-- Nützlich -->
 # lineares VC - git-tag
 # lineares VC - git-blame
