@@ -7,7 +7,9 @@
 ::: notes
 Begrüsung
 :::
+
 # Reinfolge
+
 1. Geschichte
 2. Technische Grundlagen
 3. Vorbereitung
@@ -18,11 +20,14 @@ Begrüsung
 ::: notes
 erklärung was wir wann machen wollen
 :::
+
 # Geschichte
+
 * Entwicklung des Linux-Kernals seit 2002 mit BitKeeper
 * 2005 sucht Linus Torwald einen neue Vesions Verwaltungs Software
 * Monoton und andere damaliege Optionen werden von Linus Torwald nicht als guter ersatzt angesehen
 * Ab 3 April 2005 entwickelt Lius Torwald Git als erstatz
+
 ::: notes
 * Geschichte von Git begann am 23 Feruar 2005 als dem autor von BitKeeper der Verwendeten VSC bekannt wurde, das seine software reversengeniert wird
 * öffenlic wurde die kommende veränderung am 6 April 2005 mit Mail von Linus im Kernalforum in welcher er angibt nach einer Alternative zu suchen (Check)
@@ -33,6 +38,7 @@ erklärung was wir wann machen wollen
 :::
 
 # Geschichte
+
 * Im Juni 2005 wird der Linux-Kernal 2.6.12 über git ausgeliefert
 * Am 21.12.2005 wird die Version 1.0 von git veröffentlicht
 * Bis heute wird weiter an git entwickelt
@@ -45,14 +51,16 @@ erklärung was wir wann machen wollen
 :::
 
 # Technische Grundlagen
-Git ist kein wirkliches VCS. Eigentlich ist Git eine Filesystem mit einer VCS schnitstelle.  
+
+Git ist intern nicht wie übliche VCS aufgebaut. Intern ist Git eine Dateisystem mit einer VCS schnitstelle.  
 Heutzuteage helfen viele kleinere und größer Programme Git als VCS zu verwendet.  
 
 * Git ist kein Monolitisches Projekt sonderen besteht aus vielen einzelnen Programmen
 
 ::: notes
 * Git ist fon der Implementeriung kein VCS sondern ein Dateisystem -> über dieses kann VSC gemacht werden
-* Git ist intern keine datenbank sondern ähnelt viel mehr einem Dateisystem
+* Git ist intern keine datenbank sondern ähnelt viel mehr einem Git-Dateisystems
+* nicht Dateisystem im sinne der Speicherverwaltung
 * Git ist kein Monolitisches Projekt -> besteht aus vielen einzelteilen, welche zusammen arbeiten und Verwendet werden können
 * Besitzt zum teile Zwei unteschiedliche Bestandteile, welche sehr ähnlich sind/ähliche aufgaben erfüllen
 :::
@@ -77,6 +85,11 @@ Quelle: https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain + 4 
 :::
 
 # Technische Grundlagen - Referenzen
+
+* Referenzen sind benenungen auf bestimmte Datein des Git-Dateisystems
+* Üblicherweise handelt es sich um Commit objeckte
+* Branches entstehen über die erzeugung einer Neuen Referenzen auf einen Commit
+* Head verweist üblicherweise auf eine andere Refernz
 
 ::: notes
 Referenzen verweisen auf bestimmte Objecte im Dateisystem -> Typischerweise Commits
@@ -154,8 +167,72 @@ erklärung, wei der Datenfluss bei Git ist:
 # branching - git-cherry-pick
 
 # remotes - git-clone
+::: notes
+* options about local git repositorys
+* options for big repositorys
+    * spars-checkout -> only checkout parts of the directory
+    * depth -> only go so fare back
+* template repo
+* submodules 
+:::
 # remotes - git-fetch
+
+::: notes
+soweit ich verstehe beschaft git fetch alle daten vom remote und updatet das Git-VS führt aber keine änderung am Workingtree durch.
+-> es ist alles da um Updates am Wokring tree durchzuführen. diese finden nur nicht stat.
+:::
 # remotes - git-pull
+Führt intern folgende befehle aus:
+1. git-fetch
+2. git-rebase oder git-merge
+    * abhängig von der Konfiguration
+::: notes
+fetched die remotes und versucht dessen änderung umzusetzen. 
+-> updated den wokringtree
+:::
 # remotes - git-push
+
+::: notes
+* versucht eine update der refernzen des Servers zusammen mit den benötigten Objekten
+* Quasie ein fetch für den server vom Client aus
+* Fast forwarding
+    * ein Push gelingt immer, wenn keine Daten ferlohren gehen. Ansonsten wird eine Warning generiert.
+    * option --forc kann zum datenverändert verwendet werden -> gezieltes löschen eines Kommits, ...
+    * force-with-leas
+:::
 # remotes - git-remote
+
+::: notes
+* bereitstellung von Optionen zum einstellen von Servern
+* Optionen wie(nur teil):
+    * add
+    * remove
+    * update
+    * prune (löschen von unverwendeten referenzen)
+:::
+
 # remotes - unrelated history
+
+::: notes
+git push --unrelated history
+* Push zu einem Anderen Remot, dessen baum nicht mit dem eigenen zusammenhängt
+* Führt immer zu einem Merge oder rebase
+* einfügen von daten aus einem Fremden repositorys
+:::
+
+# submodules
+
+::: notes
+einfügen eines anderen Git repos im eigenen repository
+* verwendung von externen librarys
+* weden dann seperat behandelt
+* mehr beim checkout/clone
+
+* submodules müssen händisch geupdated werden. Sowhol um grundzätzlich neue versionen zu erhalten als auch wenn jemand anderes die Version geändert hat.
+:::
+# big repo
+
+::: notes
+scalar
+maintenance
+:::
