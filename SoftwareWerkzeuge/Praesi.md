@@ -231,7 +231,12 @@ einfügen eines anderen Git repos im eigenen repository
 * submodules müssen händisch geupdated werden. Sowhol um grundzätzlich neue versionen zu erhalten als auch wenn jemand anderes die Version geändert hat.
 :::
 # big repo
-
+Mit git können auch sehr große Projekte bearbeitet werden. 
+So wird heutzutage der Windows Kernal mit Git entwickelt. 
+Aus diesem grund hat Microsoft einiges in die Optimierung von riesiegen Repositories in Git infestiert. 
+Erwähnenswert sind dabei die folgenden Befehle:
+* scalar -> Top level befehl hinter welchem sich eine reie von Unterbefehlen befindet
+* git-maintenanc -> führt säuberungs und prefetchingaufgaben periodisch durch
 ::: notes
 scalar
 maintenance
