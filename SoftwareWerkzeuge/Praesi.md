@@ -1,9 +1,6 @@
-% Titel
+% Git
 % Mathieu de Montmollin, Bernhard Lindner
 % 09.10.2024
-
-# Einführung
-
 ::: notes
 Begrüsung
 :::
@@ -64,6 +61,42 @@ Heutzuteage helfen viele kleinere und größer Programme Git als VCS zu verwende
 * Git ist kein Monolitisches Projekt -> besteht aus vielen einzelteilen, welche zusammen arbeiten und Verwendet werden können
 * Besitzt zum teile Zwei unteschiedliche Bestandteile, welche sehr ähnlich sind/ähliche aufgaben erfüllen
 :::
+::: notes
+* Nachfolgend werden hauptsechlich Porcelain befehle erleutert -> komplexere befehle
+* Es gibt auch die Plumbing befehle -> komplizierte internals
+:::
+
+# Technische Grundlagen - Datenfluss in Git
+
+:::::::::::::: {.columns}  
+::: {.column width="50%"}
+Es gibt drei Datenebnen:
+
+* Der git server
+* Das locale Git-Repo
+* Der momentan ausgecheckte Stand auch bezeichnet als Workingtree
+
+:::
+::: {.column width="50%"}
+![By Daniel Kinzler - Own work, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=25223536](GitDataflow.png)
+:::
+::::::::::::::
+
+::: notes
+erklärung, wei der Datenfluss bei Git ist:
+* Drei orte, an welchen daten liegen
+    * Remote(server (potenziel gestuft))
+    * Git Filesystem (internals) -> gesammte historie
+    * Workingtree -> Präsentation des Momentan standes im Dateisystem -> kann/wird bearbeitet
+* Wie bewegen sich daten von einem Ort in den anderen:
+    * Remote -> generelle datenbank
+    * generale datenbank -> Branches
+    * Branch -> Workingtree : git checkout
+    * Workingtree -> staging : git add
+    * Staging -> Branch : git commit
+* Auf das staging gehen wir beim Commit ein?
+:::
+
 
 # Technische Grundlagen - Git Dateitypen
 
@@ -100,41 +133,6 @@ Remotes verweise auf die ständen im Remote (Server) werden thypischerweise kaum
 Locals sind die thypischerweise verwendeten Referenzen
 :::
 
-# Technische Grundlagen - Datenfluss in Git
-
-:::::::::::::: {.columns}  
-::: {.column width="50%"}
-Es gibt drei Datenebnen:
-
-* Der git server
-* Das locale Git-Repo
-* Der momentan ausgecheckte Stand auch bezeichnet als Workingtree
-
-:::
-::: {.column width="50%"}
-![By Daniel Kinzler - Own work, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=25223536](GitDataflow.png)
-:::
-::::::::::::::
-
-::: notes
-erklärung, wei der Datenfluss bei Git ist:
-* Drei orte, an welchen daten liegen
-    * Remote(server (potenziel gestuft))
-    * Git Filesystem (internals) -> gesammte historie
-    * Workingtree -> Präsentation des Momentan standes im Dateisystem -> kann/wird bearbeitet
-* Wie bewegen sich daten von einem Ort in den anderen:
-    * Remote -> generelle datenbank
-    * generale datenbank -> Branches
-    * Branch -> Workingtree : git checkout
-    * Workingtree -> staging : git add
-    * Staging -> Branch : git commit
-* Auf das staging gehen wir beim Commit ein?
-:::
-
-::: notes
-* Nachfolgend werden hauptsechlich Porcelain befehle erleutert -> komplexere befehle
-* Es gibt auch die Plumbing befehle -> komplizierte internals
-:::
 
 # Vorbereitung - git-config
 # Vorbereitung - git-clone
@@ -146,7 +144,9 @@ erklärung, wei der Datenfluss bei Git ist:
 # lineares VC - .gitignore
 # lineares VC - git-diff
 # lineares VC - git-log
+
 --graph option
+
 <!-- Nützlich -->
 # lineares VC - git-tag
 # lineares VC - git-blame
@@ -163,8 +163,22 @@ erklärung, wei der Datenfluss bei Git ist:
 # branching - git-checkout
 # branching - git-switch
 # branching - git-merge
+
+--allow-unrelated-history
+
 # branching - git-rebase
 # branching - git-cherry-pick
+
+# submodules
+
+::: notes
+einfügen eines anderen Git repos im eigenen repository
+* verwendung von externen librarys
+* weden dann seperat behandelt
+* mehr beim checkout/clone
+
+* submodules müssen händisch geupdated werden. Sowhol um grundzätzlich neue versionen zu erhalten als auch wenn jemand anderes die Version geändert hat.
+:::
 
 # remotes - git-clone
 ::: notes
@@ -175,6 +189,7 @@ erklärung, wei der Datenfluss bei Git ist:
 * template repo
 * submodules 
 :::
+
 # remotes - git-fetch
 
 ::: notes
@@ -182,13 +197,17 @@ soweit ich verstehe beschaft git fetch alle daten vom remote und updatet das Git
 -> es ist alles da um Updates am Wokring tree durchzuführen. diese finden nur nicht stat.
 :::
 # remotes - git-pull
+
 Führt intern folgende befehle aus:
+
 1. git-fetch
 2. git-rebase oder git-merge
-    * abhängig von der Konfiguration
+    * abhängig von der Konfiguration  
+
 ::: notes
 fetched die remotes und versucht dessen änderung umzusetzen. 
--> updated den wokringtree
+-> updated den wokringtree  
+
 :::
 # remotes - git-push
 
@@ -198,7 +217,8 @@ fetched die remotes und versucht dessen änderung umzusetzen.
 * Fast forwarding
     * ein Push gelingt immer, wenn keine Daten ferlohren gehen. Ansonsten wird eine Warning generiert.
     * option --forc kann zum datenverändert verwendet werden -> gezieltes löschen eines Kommits, ...
-    * force-with-leas
+    * force-with-leas  
+
 :::
 # remotes - git-remote
 
@@ -211,25 +231,6 @@ fetched die remotes und versucht dessen änderung umzusetzen.
     * prune (löschen von unverwendeten referenzen)
 :::
 
-# remotes - unrelated history
-
-::: notes
-git push --unrelated history
-* Push zu einem Anderen Remot, dessen baum nicht mit dem eigenen zusammenhängt
-* Führt immer zu einem Merge oder rebase
-* einfügen von daten aus einem Fremden repositorys
-:::
-
-# submodules
-
-::: notes
-einfügen eines anderen Git repos im eigenen repository
-* verwendung von externen librarys
-* weden dann seperat behandelt
-* mehr beim checkout/clone
-
-* submodules müssen händisch geupdated werden. Sowhol um grundzätzlich neue versionen zu erhalten als auch wenn jemand anderes die Version geändert hat.
-:::
 # big repo
 Mit git können auch sehr große Projekte bearbeitet werden. 
 So wird heutzutage der Windows Kernal mit Git entwickelt. 
@@ -241,3 +242,4 @@ Erwähnenswert sind dabei die folgenden Befehle:
 scalar
 maintenance
 :::
+
