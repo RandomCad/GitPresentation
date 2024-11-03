@@ -114,6 +114,7 @@ erklärung, wei der Datenfluss bei Git ist:
     * Tag -> ähnelt einem Commit sehr stark -> referenziert irgende ein anderes objekt dauerhaft mit angabe wer, wann, weiso
     * Packs -> sind komprimierte versionen aller anderer Viles -> Mehrere Files werden zusammen betrachtet. Alle files, welche ähnliche größe und inhalt haben werden mithilfe von Delta-Kompression komprimiert -> ob diese dabei tatsechlich von einander abstammen ist git dabei egal -> git gc
     * Physisch werden die unterschiedlichen Datentypen sehr ähnlich gespeichert. Auf dieses wird hier nicht eingegangen
+
 Quelle: https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain + 4 oder so Kapitel
 :::
 
@@ -140,21 +141,110 @@ Locals sind die thypischerweise verwendeten Referenzen
 # lineares VC - git-init
 # lineares VC - git-status
 # lineares VC - git-add und git-rm
+`git add <path...>` - fügt Dateien dem Index hinzu
+
+Optionen:
+- `-A` `--all` Betrachte alle Dateien
+- `-f` `--force` ignoriere .gitignore
+- `-p` `--patch` Interaktive Auswahl der einzelnen Änderungen innerhalb einer Datei
+
+`git rm <path...>` - löscht Dateien aus Index und Working Tree
+
+Optionen:
+- `-f` `--force` ermöglicht löschen von Dateien, zu denen der Index ereits Änderungen beinhaltet
+- `--cached` ändert ausschließlich den Index
 # lineares VC - git-commit
+`git commit` - erzeugt einen neuen Commit
+
+Es existieren verschieden Möglichkeiten, welche Dateien im Commit gespeichert werden:
+- direkte angabe als Argument, z.B. `git commit Praesi.md`
+- Option `-a`, um alle Änderungen an bereits bekannten Dateien aufzunehmen
+- Option `--interactive` oder `--patch`, um interaktiv zu entscheiden
+- Ansonsten wird der Stand des Indexes, der über `git add` und `git rm` bearbeitet wurde, verwendet
+
+Optionen:
+- `-m <msg>` `--message=<msg>` setzt die Commit-Nachricht
+- `--amend` ändere den letzten Commit, anstatt einen neuen zu erzeugen
+- `-S` `--gpg-sign` erzeugt einen signierten Commit
+# lineares VC - git-show
+`git show <object>` - zeigt Informationen über ein Objekt (meist ein Commit) an
+
+Angabe des Objektes:
+- Name es Objekts
+    - Commits: Hash bzw. eindeutiger Präfix
+    - Branches, Tags
+    - HEAD
+- relativ zu anderen Objekten:
+    - `<obj>^` ist der unmittelbare Vorgänger
+    - `<obj>~<n>` ist der nte Vorgänger
+    - `HEAD^^^` = `HEAD~3`
+- `:/<regex>` sucht nach einem Commit mit der Nachricht `<regex>`
+- `<ref>@{<time>}` gibt den Stand einer Referenz (Branch, HEAD) zu einem Zeitpunkt an, z.B. `main@{yesterday}` oder `HEAD@{5 minutes ago}`
+
+Optionen für `git show`:
+- `-s` `--no-patch` zeigt keine Änderungen an
 # lineares VC - .gitignore
+Eine .gitignore Datei gibt Pfade an, die von git ignoriert werden sollen. Jedes Verzeichnis kann eine eigene .gitignore haben.
+```shell
+# ignore object files
+*.o
+# ignore everything in folder static,
+static/*
+# but not this file
+!static/favicon.ico
+```
 # lineares VC - git-diff
+`git diff [-- <path...>]` - zeigt die Unterschiede zwischen verscshiedenen Versionen von Dateien an.
+
+- ohne optionen: Index <-> Working Tree
+- `--cached [<commit>]`: Index <-> Commit (HEAD, falls kein Commit angegeben)
+- `<commit>`: Commit <-> Working Tree
+- `<commit> <commit>`: Commit 1 <-> Commit 2
+
+Optionen:
+- `--word-diff` zeigt Änderungen innerhalb einer Zeile an
+
+::: notes
+- `--` bedeuted alles folgende sind pfade
+- `<path>` kann zum filtern angegeben werden
+- --word-diff sehr angenehm wenn einzelne wörter geändert werden, für gesamte zeilen aber eher ungeeignet
+:::
 # lineares VC - git-log
+`git log` - zeigt die Commit-Historie an
 
---graph option
+Je nach Argumenten können verschiedene Ausgaben erreicht werden:
+- `git log` zeigt, beginnend bei HEAD, alle direkten Vorgänger an, bis hin zum initialen Commit
+- `git log <commit1>..<commit2>` zeigt alle Commits NACH `<commit1>` bis `<commit2>` an
+- `git log -L <hunk>` zeigt die Historie für einen bestimmten Bereich an. Der Bereich kann angegeben werden über `<start>,<end>:<file>` oder `:<funcname>:<file>`.
+- `git log [--follow] <file>` zeigt die Historie für eine Datei an. Mit `--follow` werden Umbenennungen der Datei mit beachtet.
 
+Optionen:
+- `--graph` zeichnet einen Graphen links von der Ausgabe
+- `-n <number>` limitiert die Ausgabe auf `<number>` Commits
 <!-- Nützlich -->
 # lineares VC - git-tag
+`git tag` - Erstellt, löscht und listet Tags.
+
+`git tag <name> [<commit>]` erstellt einen neuen commit
+
+`git tag -l [<pattern>]` listet commits, die pattern entsprechen
+
+`git tag -d <name>` löscht einen tag
+
+::: notes
+- unterscheidung zwischen 'annotated' und 'lightweight' tags: annotated haben nachricht und können signiert (und verifiziert) werden -> releases, lightweight sind nur benannte referenz auf commit -> interne nutzung
+:::
 # lineares VC - git-blame
-# lineares VC - git-clean
+`git blame <file>` - zeigt für jede Zeile an, wer diese zuletzt bearbeitet hat
+
+Optionen:
+- `-L <hunk>` begrenzt die Ausgabe auf einen Bereich, analog zu `git log -L`
+- `-w` ignoriert Whitespace-Änderungen
+- `-C` ignoriert Commits, in denen die Zeile nur verschoben und nicht geändert wurde. Kann bis zu dreimal angegeben werden, um mehr Commits zu durchsuchen
 # lineares VC - git-config
 <!-- undo -->
 # lineares VC - git-reset
-# lineares VC - git-restor
+# lineares VC - git-restore
 # lineares VC - git-revert
 <!-- stash -->
 # lineares VC - git-stash
