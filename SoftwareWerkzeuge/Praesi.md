@@ -310,7 +310,7 @@ Einfügen eines anderen Git Repositories in das eigene Repository
 
 Optionen:
 
--` l`, `-s` Optimierungsoption für bereits lokal existierende Repositories. Es wird versucht, so wenig Dateien wie möglich zu duplizieren.
+- `-l`, `-s` Optimierungsoption für bereits lokal existierende Repositories. Es wird versucht, so wenig Dateien wie möglich zu duplizieren.
 - `--spars`: lade nur die Dateien im ersten Unterverzeichnis.
 - `--depth`: lade nur X Commits aus allen Zweigen herunter.
 
