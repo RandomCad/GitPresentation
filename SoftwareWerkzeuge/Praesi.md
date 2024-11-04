@@ -140,40 +140,58 @@ Locals sind die thypischerweise verwendeten Referenzen
 <!-- essentials -->
 # lineares VC - git-init
 # lineares VC - git-status
-# lineares VC - git-add und git-rm
+
+# lineares VC - git-add
+
 `git add <path...>` - fügt Dateien dem Index hinzu
 
 Optionen:
+
 - `-A` `--all` Betrachte alle Dateien
 - `-f` `--force` ignoriere .gitignore
 - `-p` `--patch` Interaktive Auswahl der einzelnen Änderungen innerhalb einer Datei
 
+# lineares VC - git-rm
+
 `git rm <path...>` - löscht Dateien aus Index und Working Tree
 
 Optionen:
+
 - `-f` `--force` ermöglicht löschen von Dateien, zu denen der Index ereits Änderungen beinhaltet
 - `--cached` ändert ausschließlich den Index
+
 # lineares VC - git-commit
 `git commit` - erzeugt einen neuen Commit
 
 Es existieren verschieden Möglichkeiten, welche Dateien im Commit gespeichert werden:
+
 - direkte angabe als Argument, z.B. `git commit Praesi.md`
 - Option `-a`, um alle Änderungen an bereits bekannten Dateien aufzunehmen
 - Option `--interactive` oder `--patch`, um interaktiv zu entscheiden
 - Ansonsten wird der Stand des Indexes, der über `git add` und `git rm` bearbeitet wurde, verwendet
 
+# lineares VC - git-commit
 Optionen:
+
 - `-m <msg>` `--message=<msg>` setzt die Commit-Nachricht
 - `--amend` ändere den letzten Commit, anstatt einen neuen zu erzeugen
-- `-S` `--gpg-sign` erzeugt einen signierten Commit
+- `-S` `--gpg-sign` erzeugt einen signierten Commit  
+
+
 # lineares VC - git-show
+
 `git show <object>` - zeigt Informationen über ein Objekt (meist ein Commit) an
 
 Angabe des Objektes:
+
 - Name es Objekts
     - Commits: Hash bzw. eindeutiger Präfix
     - Branches, Tags
     - HEAD
+    
+# lineares VC - git-show
+Angabe des Objektes:
+
 - relativ zu anderen Objekten:
     - `<obj>^` ist der unmittelbare Vorgänger
     - `<obj>~<n>` ist der nte Vorgänger
@@ -181,8 +199,12 @@ Angabe des Objektes:
 - `:/<regex>` sucht nach einem Commit mit der Nachricht `<regex>`
 - `<ref>@{<time>}` gibt den Stand einer Referenz (Branch, HEAD) zu einem Zeitpunkt an, z.B. `main@{yesterday}` oder `HEAD@{5 minutes ago}`
 
+# lineares VC - git-show
+
 Optionen für `git show`:
+
 - `-s` `--no-patch` zeigt keine Änderungen an
+
 # lineares VC - .gitignore
 Eine .gitignore Datei gibt Pfade an, die von git ignoriert werden sollen. Jedes Verzeichnis kann eine eigene .gitignore haben.
 ```shell
@@ -193,7 +215,9 @@ static/*
 # but not this file
 !static/favicon.ico
 ```
+
 # lineares VC - git-diff
+
 `git diff [-- <path...>]` - zeigt die Unterschiede zwischen verscshiedenen Versionen von Dateien an.
 
 - ohne optionen: Index <-> Working Tree
@@ -213,15 +237,19 @@ Optionen:
 `git log` - zeigt die Commit-Historie an
 
 Je nach Argumenten können verschiedene Ausgaben erreicht werden:
+
 - `git log` zeigt, beginnend bei HEAD, alle direkten Vorgänger an, bis hin zum initialen Commit
 - `git log <commit1>..<commit2>` zeigt alle Commits NACH `<commit1>` bis `<commit2>` an
 - `git log -L <hunk>` zeigt die Historie für einen bestimmten Bereich an. Der Bereich kann angegeben werden über `<start>,<end>:<file>` oder `:<funcname>:<file>`.
 - `git log [--follow] <file>` zeigt die Historie für eine Datei an. Mit `--follow` werden Umbenennungen der Datei mit beachtet.
 
+# lineares VC - git-log
 Optionen:
+
 - `--graph` zeichnet einen Graphen links von der Ausgabe
 - `-n <number>` limitiert die Ausgabe auf `<number>` Commits
 <!-- Nützlich -->
+
 # lineares VC - git-tag
 `git tag` - Erstellt, löscht und listet Tags.
 
@@ -332,4 +360,4 @@ Erwähnenswert sind dabei die folgenden Befehle:
 scalar
 maintenance
 :::
-
+</p>
