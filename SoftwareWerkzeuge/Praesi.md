@@ -288,6 +288,12 @@ Optionen:
 # branching - git-cherry-pick
 
 # submodules
+Es ist nicht unüblich, ein anderes Repository in seines eigenen Repository beinhalten zu wollen. 
+Hierfür gibt es git submodules.  
+
+Über diese kann mann den inhalt eines anderen Repositorys in das eigene Integreiren. 
+Das fremde Git repository wird dabei nicht follständig in das einge Repository eingefügt sondern nur angegeben, welcher Kommit von diesem geladen werden soll.  
+Dadurch verändern sich die Funktionsweise von git-pull und git-fetch. 
 
 ::: notes
 einfügen eines anderen Git repos im eigenen repository
@@ -296,24 +302,36 @@ einfügen eines anderen Git repos im eigenen repository
 * mehr beim checkout/clone
 
 * submodules müssen händisch geupdated werden. Sowhol um grundzätzlich neue versionen zu erhalten als auch wenn jemand anderes die Version geändert hat.
+* wie änderungen in diesen gespeichert werden überschreiten diesen vortrag
 :::
 
 # remotes - git-clone
+`git clone <repository-url>` - Dupliciert den Actuelsten stand vom server in ein neuse Verzeichnis
+
+Optionen:
+- `-l`, `-s` optimierung für locale repositorys. Es wird versucht möglichst wenige datein doppelt for zu Halten
+- `--spars` lade nur die Datein im ersten unterordner herrunter
+- `--depth` lade nur x viele Commits von allen Branches herrunter
+
 ::: notes
 * options about local git repositorys
 * options for big repositorys
-    * spars-checkout -> only checkout parts of the directory
+    * spars-checkout -> only checkout parts of the directory also nur X tife. Mit git-spars-checkout kann erweitert werden
     * depth -> only go so fare back
-* template repo
 * submodules 
 :::
 
 # remotes - git-fetch
 
+`git fetch` - Läde die Git Objekte des Servers fürht aber keine änderung am Workingtree oder den eigenen Referncen durch.
+
+Besitzt optionen zum arbeiten mit mehrern Remote Servern und unfollständigen Repositorys.
+
 ::: notes
 soweit ich verstehe beschaft git fetch alle daten vom remote und updatet das Git-VS führt aber keine änderung am Workingtree durch.
 -> es ist alles da um Updates am Wokring tree durchzuführen. diese finden nur nicht stat.
 :::
+
 # remotes - git-pull
 
 Führt intern folgende befehle aus:
@@ -325,9 +343,18 @@ Führt intern folgende befehle aus:
 ::: notes
 fetched die remotes und versucht dessen änderung umzusetzen. 
 -> updated den wokringtree  
-
 :::
+
 # remotes - git-push
+
+`git push` - Updated das Git-Repository des Servers mit den aktuellen Daten, soweit möglich.
+
+Optionen:
+
+* `--all` - Updated alle Branches und nicht nur die zum Aktuellen Workingtree gehörender.
+* `--foce` - Update den Server, auch wenn dadurch Daten veroren gehen
+* `--force-with-lease` - Update den Server, auch wenn daten verloren gehen, aber nur, wenn die Server Revernz der Localen entspricht
+* `--set-upstream` - Füge ein Refernc dem Server hinzu. Wird immer beim erstmaligen pushen einer neuen Branch benötigt.
 
 ::: notes
 * versucht eine update der refernzen des Servers zusammen mit den benötigten Objekten
@@ -336,9 +363,16 @@ fetched die remotes und versucht dessen änderung umzusetzen.
     * ein Push gelingt immer, wenn keine Daten ferlohren gehen. Ansonsten wird eine Warning generiert.
     * option --forc kann zum datenverändert verwendet werden -> gezieltes löschen eines Kommits, ...
     * force-with-leas  
+* --set-upstream
 
 :::
 # remotes - git-remote
+Verwaltet Remote server. Besitzt mehrere Unterkommandos:
+* `git remote add` - Hinzufügen eines neuen remote Servers
+* `git remote remove` - Entvernen eines Servers
+* `git remote update` - führt ein fetch für alle remotes aus
+* `git remote prune` - löscht locale refernzen, welche nicht auf dem server existieren und nicht verwendet werden
+* ...
 
 ::: notes
 * bereitstellung von Optionen zum einstellen von Servern
@@ -354,10 +388,14 @@ Mit git können auch sehr große Projekte bearbeitet werden.
 So wird heutzutage der Windows Kernal mit Git entwickelt. 
 Aus diesem grund hat Microsoft einiges in die Optimierung von riesiegen Repositories in Git infestiert. 
 Erwähnenswert sind dabei die folgenden Befehle:
+
 * scalar -> Top level befehl hinter welchem sich eine reie von Unterbefehlen befindet
 * git-maintenanc -> führt säuberungs und prefetchingaufgaben periodisch durch
+
 ::: notes
 scalar
 maintenance
 :::
-</p>
+
+# Übung
+
