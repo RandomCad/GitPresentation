@@ -2,7 +2,7 @@
 % Mathieu de Montmollin, Bernhard Lindner
 % 09.10.2024
 ::: notes
-Begrüsung
+Begrüßung
 :::
 
 # Reinfolge
@@ -20,17 +20,17 @@ erklärung was wir wann machen wollen
 
 # Geschichte
 
-* Entwicklung des Linux-Kernals seit 2002 mit BitKeeper
-* 2005 sucht Linus Torwald einen neue Vesions Verwaltungs Software
-* Monoton und andere damaliege Optionen werden von Linus Torwald nicht als guter ersatzt angesehen
-* Ab 3 April 2005 entwickelt Lius Torwald Git als erstatz
+* Entwicklung des Linux-Kernels seit 2002 mit BitKeeper
+* 2005 sucht Linus Torwald eine neue Vesions Verwaltungs Software
+* Monoton und andere damalige Optionen werden von Linus Torwald nicht als guter Ersatz angesehen
+* Ab 3. April 2005 entwickelt Linus Torwald Git als Ersatz
 
 ::: notes
-* Geschichte von Git begann am 23 Feruar 2005 als dem autor von BitKeeper der Verwendeten VSC bekannt wurde, das seine software reversengeniert wird
-* öffenlic wurde die kommende veränderung am 6 April 2005 mit Mail von Linus im Kernalforum in welcher er angibt nach einer Alternative zu suchen (Check)
-* bereits drei tage forher begann Linus mit der entwicklung von Git (https://marc.info/?l=git&m=117254154130732)
-* Am 7 April wurde der erste commit mit git durchgeführt
-* Am 16 April wurde der erste Linux Kernal kommit mitels git durchgeführt
+* Geschichte von Git begann am 23. Februar 2005, als dem Autor von BitKeeper, der Verwendeten VSC bekannt wurde, dass seine Software reverse-engineert wird
+* öffenlich wurde die kommende Veränderung am 6. April 2005 mit Mail von Linus im Kernelforum, in welcher er angibt, nach einer Alternative zu suchen (Check)
+* bereits drei Tage vorher begann Linus mit der Entwicklung von Git (https://marc.info/?l=git&m=117254154130732)
+* Am 7 April wurde der erste Commit mit git durchgeführt
+* Am 16 April wurde der erste Linux Kernel Commit mitels git durchgeführt
 * Wenige Tage später der erste merge (https://marc.info/?l=git&m=117254154130732)
 :::
 
@@ -43,23 +43,25 @@ erklärung was wir wann machen wollen
 
 ::: notes
 * Git ist dabei bei der Funktionsweise an BitKeeper und Monoton angelehnt
-* erster releas war am 21 December 2005
-* bennenung: Git als kunstwort von Linus entwickelt bedeutet soviel wie unangenehme Person
+* erster Release war am 21 December 2005
+* bennenung: Git als Kunstwort von Linus entwickelt, bedeutet soviel wie "unangenehme Person"
 :::
 
 # Technische Grundlagen
 
-Git ist intern nicht wie übliche VCS aufgebaut. Intern ist Git eine Dateisystem mit einer VCS schnitstelle.  
+Git ist intern nicht wie ein übliches VCS aufgebaut, sondern wie ein Dateisystem mit einer VCS Schnitstelle.
 Heutzuteage helfen viele kleinere und größer Programme Git als VCS zu verwendet.  
 
-* Git ist kein Monolitisches Projekt sonderen besteht aus vielen einzelnen Programmen
+* Git ist kein monolitisches Projekt, sonderen besteht aus vielen einzelnen Programmen
+* Git ist ein dezentrales VCS (DVCS)
 
 ::: notes
-* Git ist fon der Implementeriung kein VCS sondern ein Dateisystem -> über dieses kann VSC gemacht werden
-* Git ist intern keine datenbank sondern ähnelt viel mehr einem Git-Dateisystems
+* Git ist von der Implementeriung kein VCS sondern ein Dateisystem -> über dieses kann VSC gemacht werden
+* Git ist intern keine datenbank sondern ähnelt viel mehr einem Git-Dateisystem
 * nicht Dateisystem im sinne der Speicherverwaltung
 * Git ist kein Monolitisches Projekt -> besteht aus vielen einzelteilen, welche zusammen arbeiten und Verwendet werden können
 * Besitzt zum teile Zwei unteschiedliche Bestandteile, welche sehr ähnlich sind/ähliche aufgaben erfüllen
+* dezentrales VCS -> nutzer besitzt große teile als lokale kopie -> braucht nicht immer server -> nur wenn er änderungen veröffentlichen will
 :::
 ::: notes
 * Nachfolgend werden hauptsechlich Porcelain befehle erleutert -> komplexere befehle
@@ -72,9 +74,9 @@ Heutzuteage helfen viele kleinere und größer Programme Git als VCS zu verwende
 ::: {.column width="50%"}
 Es gibt drei Datenebnen:
 
-* Der git server
-* Das locale Git-Repo
-* Der momentan ausgecheckte Stand auch bezeichnet als Workingtree
+* Der git Server
+* Das locale Git-Repository
+* Der momentan ausgecheckte Stand, auch bezeichnet als Workingtree
 
 :::
 ::: {.column width="50%"}
@@ -108,35 +110,43 @@ erklärung, wei der Datenfluss bei Git ist:
 
 ::: notes
 * Dateitypen:
-    * Blob -> Ist der rohe inhalt einer in git abgelegten Datei. Wird ausschließlich über eine SHA1-Hash identifiziert. -> Git ist der Inhalt und das Format follkommen egal
+    * Blob -> Ist der rohe inhalt einer in git abgelegten Datei. Wird ausschließlich über eine SHA1-Hash identifiziert. -> Git ist der Inhalt und das Format vollkommen egal
     * Tree -> Entsprichd einen Ordner. Ein Tree beinhaltet referenzen auf andere Trees oder Blobs -> mit diesem objekt wäre theoretisch eine Versionsverwaltung bereits möglich -> erzuegung eines neuen Trees für jeden commit
-    * commit object -> Dient dazu zu speichern, wer, wann, warum eine veränderung gespeichert hat -> Referenziert dabei einen Bestimmten Tree und potenzielle Parent Commits -> können mehrere Sein -> merging
-    * Tag -> ähnelt einem Commit sehr stark -> referenziert irgende ein anderes objekt dauerhaft mit angabe wer, wann, weiso
-    * Packs -> sind komprimierte versionen aller anderer Viles -> Mehrere Files werden zusammen betrachtet. Alle files, welche ähnliche größe und inhalt haben werden mithilfe von Delta-Kompression komprimiert -> ob diese dabei tatsechlich von einander abstammen ist git dabei egal -> git gc
+    * commit object -> Dient dazu zu speichern, wer, wann, warum eine veränderung gespeichert hat -> Referenziert dabei einen bestimmten Tree und potenzielle Parent Commits -> können mehrere Sein -> merging
+    * Tag -> ähnelt einem Commit sehr stark -> referenziert irgend ein anderes objekt dauerhaft mit angabe wer, wann, weiso
+    * Packs -> sind komprimierte versionen aller anderer Files -> Mehrere Files werden zusammen betrachtet. Alle files, welche ähnliche größe und inhalt haben werden mithilfe von Delta-Kompression komprimiert -> ob diese dabei tatsächlich von einander abstammen ist git dabei egal -> git gc
     * Physisch werden die unterschiedlichen Datentypen sehr ähnlich gespeichert. Auf dieses wird hier nicht eingegangen
+
+* Beispiel:
+    * main.c, common.h als Blob -> verschiedene Stände -> verschiedene Blobs
+    * src/ als Tree -> Tree1 enthält Blob(main.c, v1) + Blob(common.h, v1), Tree2 enthält Blob(main.c, v2) + Blob(common.h, v1)
 
 Quelle: https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain + 4 oder so Kapitel
 :::
 
 # Technische Grundlagen - Referenzen
 
-* Referenzen sind benenungen auf bestimmte Datein des Git-Dateisystems
-* Üblicherweise handelt es sich um Commit objeckte
+* Referenzen sind benannte Verweise auf bestimmte Objekte des Git-Dateisystems
+* Üblicherweise handelt es sich um Commits
 * Branches entstehen über die erzeugung einer Neuen Referenzen auf einen Commit
-* Head verweist üblicherweise auf eine andere Refernz
+* HEAD verweist üblicherweise auf eine andere Refernz
 
 ::: notes
-Referenzen verweisen auf bestimmte Objecte im Dateisystem -> Typischerweise Commits
-Über diese ist ein schnelleres erreichen/bearbeiten mit diesen möglich
-Über diese werden alle Blätter im Commit baum typischerweise beibehalten
-Grundsetzlich gibt es remote und local Refernces
-Remotes verweise auf die ständen im Remote (Server) werden thypischerweise kaum/wenig verwendet.
-Locals sind die thypischerweise verwendeten Referenzen
+* Referenzen verweisen auf bestimmte Objekte im Dateisystem -> Typischerweise Commits
+* Über diese ist ein schnelleres erreichen/bearbeiten mit diesen möglich
+* Über diese werden alle Blätter im Commit baum typischerweise beibehalten
+* Grundsätzlich gibt es remote und local References
+* Remotes verweise auf die Stände im Remote (Server), werden typischerweise kaum/wenig verwendet.
+* Locals sind die typischerweise verwendeten Referenzen
 :::
 
-
 # Vorbereitung - git-config
-# Vorbereitung - git-clone
+`git config set --global user.name <name>`
+
+`git config set --global user.email <email>`
+
+Unter Windows: `git config set --global core.autocrlf true`
+
 <!-- essentials -->
 # lineares VC - git-init
 # lineares VC - git-status
@@ -147,9 +157,9 @@ Locals sind die thypischerweise verwendeten Referenzen
 
 Optionen:
 
-- `-A` `--all` Betrachte alle Dateien
-- `-f` `--force` ignoriere .gitignore
-- `-p` `--patch` Interaktive Auswahl der einzelnen Änderungen innerhalb einer Datei
+- `-A` `--all`: Betrachte alle Dateien
+- `-f` `--force`: ignoriere .gitignore
+- `-p` `--patch`: Interaktive Auswahl der einzelnen Änderungen innerhalb einer Datei
 
 # lineares VC - git-rm
 
@@ -157,8 +167,8 @@ Optionen:
 
 Optionen:
 
-- `-f` `--force` ermöglicht löschen von Dateien, zu denen der Index ereits Änderungen beinhaltet
-- `--cached` ändert ausschließlich den Index
+- `-f` `--force`: ermöglicht löschen von Dateien, zu denen der Index ereits Änderungen beinhaltet
+- `--cached`: ändert ausschließlich den Index
 
 # lineares VC - git-commit
 `git commit` - erzeugt einen neuen Commit
@@ -166,16 +176,21 @@ Optionen:
 Es existieren verschieden Möglichkeiten, welche Dateien im Commit gespeichert werden:
 
 - direkte angabe als Argument, z.B. `git commit Praesi.md`
-- Option `-a`, um alle Änderungen an bereits bekannten Dateien aufzunehmen
-- Option `--interactive` oder `--patch`, um interaktiv zu entscheiden
-- Ansonsten wird der Stand des Indexes, der über `git add` und `git rm` bearbeitet wurde, verwendet
+- `-a`: für alle Änderungen
+- `--interactive` oder `--patch`, um interaktiv zu entscheiden
+- ohne Angaben wird der Index committed
+
+::: notes
+* `-a` -> alle Änderungen an **bereits bekannten** Dateien aufzunehmen
+* Ansonsten wird der Stand des Indexes, der über `git add` und `git rm` bearbeitet wurde, verwendet
+:::
 
 # lineares VC - git-commit
 Optionen:
 
-- `-m <msg>` `--message=<msg>` setzt die Commit-Nachricht
-- `--amend` ändere den letzten Commit, anstatt einen neuen zu erzeugen
-- `-S` `--gpg-sign` erzeugt einen signierten Commit  
+- `-m <msg>` `--message=<msg>`: setzt die Commit-Nachricht
+- `--amend`: ändere den letzten Commit, anstatt einen neuen zu erzeugen
+- `-S` `--gpg-sign`: erzeugt einen signierten Commit  
 
 
 # lineares VC - git-show
@@ -192,18 +207,20 @@ Angabe des Objektes:
 # lineares VC - git-show
 Angabe des Objektes:
 
-- relativ zu anderen Objekten:
-    - `<obj>^` ist der unmittelbare Vorgänger
-    - `<obj>~<n>` ist der nte Vorgänger
-    - `HEAD^^^` = `HEAD~3`
-- `:/<regex>` sucht nach einem Commit mit der Nachricht `<regex>`
-- `<ref>@{<time>}` gibt den Stand einer Referenz (Branch, HEAD) zu einem Zeitpunkt an, z.B. `main@{yesterday}` oder `HEAD@{5 minutes ago}`
+* relativ zu anderen Objekten:
+    * `<obj>^` ist der unmittelbare Vorgänger
+    * `<obj>~<n>` ist der nte Vorgänger
+    * `HEAD^^^` = `HEAD~3`
+* `:/<regex>`: sucht nach einem Commit mit der Nachricht `<regex>`
 
 # lineares VC - git-show
+Angabe des Objektes:
+
+* `<ref>@{<time>}`: gibt den Stand einer Referenz (Branch, HEAD) zu einem Zeitpunkt an, z.B. `main@{yesterday}` oder `HEAD@{5 minutes ago}`
 
 Optionen für `git show`:
 
-- `-s` `--no-patch` zeigt keine Änderungen an
+- `-s` `--no-patch`: zeigt keine Änderungen an
 
 # lineares VC - .gitignore
 Eine .gitignore Datei gibt Pfade an, die von git ignoriert werden sollen. Jedes Verzeichnis kann eine eigene .gitignore haben.
@@ -220,60 +237,140 @@ static/*
 
 `git diff [-- <path...>]` - zeigt die Unterschiede zwischen verscshiedenen Versionen von Dateien an.
 
-- ohne optionen: Index <-> Working Tree
-- `--cached [<commit>]`: Index <-> Commit (HEAD, falls kein Commit angegeben)
-- `<commit>`: Commit <-> Working Tree
-- `<commit> <commit>`: Commit 1 <-> Commit 2
+* ohne optionen: Index <-> Working Tree
+* `--cached [<commit>]`: Index <-> Commit (HEAD, falls kein Commit angegeben)
+* `<commit>`: Commit <-> Working Tree
+* `<commit> <commit>`: Commit 1 <-> Commit 2
 
 Optionen:
-- `--word-diff` zeigt Änderungen innerhalb einer Zeile an
+
+* `--word-diff`: zeigt Änderungen innerhalb einer Zeile an
 
 ::: notes
-- `--` bedeuted alles folgende sind pfade
-- `<path>` kann zum filtern angegeben werden
-- --word-diff sehr angenehm wenn einzelne wörter geändert werden, für gesamte zeilen aber eher ungeeignet
+* `--` bedeuted alles folgende sind pfade
+* `<path>` kann zum filtern angegeben werden
+* --word-diff sehr angenehm wenn einzelne wörter geändert werden, für gesamte zeilen aber eher ungeeignet
 :::
 # lineares VC - git-log
 `git log` - zeigt die Commit-Historie an
 
 Je nach Argumenten können verschiedene Ausgaben erreicht werden:
 
-- `git log` zeigt, beginnend bei HEAD, alle direkten Vorgänger an, bis hin zum initialen Commit
-- `git log <commit1>..<commit2>` zeigt alle Commits NACH `<commit1>` bis `<commit2>` an
-- `git log -L <hunk>` zeigt die Historie für einen bestimmten Bereich an. Der Bereich kann angegeben werden über `<start>,<end>:<file>` oder `:<funcname>:<file>`.
-- `git log [--follow] <file>` zeigt die Historie für eine Datei an. Mit `--follow` werden Umbenennungen der Datei mit beachtet.
+* `git log`: gesamte lineare Historie
+* `git log <commit1>..<commit2>`: Spanne an Commits
+* `git log -L <hunk>`: Historie eines Bereichs
+    * Bereich: `<start>,<end>:<file>` oder `:<funcname>:<file>`
+* `git log [--follow] <file>`: Historie einer Datei
+
+::: notes
+* ohne optionen: zeigt, beginnend bei HEAD, alle direkten Vorgänger an, bis hin zum initialen Commit
+* `<commit1>..<commit2>` zeigt alle Commits NACH `<commit1>` bis `<commit2>` an
+* Mit `--follow` werden Umbenennungen der Datei mit beachtet
+:::
 
 # lineares VC - git-log
 Optionen:
 
-- `--graph` zeichnet einen Graphen links von der Ausgabe
-- `-n <number>` limitiert die Ausgabe auf `<number>` Commits
+* `--graph`: zeichnet einen Graphen links von der Ausgabe
+* `-n <number>`: limitiert die Ausgabe auf `<number>` Commits
 <!-- Nützlich -->
 
 # lineares VC - git-tag
 `git tag` - Erstellt, löscht und listet Tags.
 
-`git tag <name> [<commit>]` erstellt einen neuen commit
-
-`git tag -l [<pattern>]` listet commits, die pattern entsprechen
-
-`git tag -d <name>` löscht einen tag
+* `git tag <name> [<commit>]`: erstellt einen neuen commit
+* `git tag -l [<pattern>]`: listet commits, die pattern entsprechen
+* `git tag -d <name>`: löscht einen tag
 
 ::: notes
-- unterscheidung zwischen 'annotated' und 'lightweight' tags: annotated haben nachricht und können signiert (und verifiziert) werden -> releases, lightweight sind nur benannte referenz auf commit -> interne nutzung
+* unterscheidung zwischen 'annotated' und 'lightweight' tags: annotated haben nachricht und können signiert (und verifiziert) werden -> releases, lightweight sind nur benannte referenz auf commit -> interne nutzung
+* annotated tags über -a, message -m, signed -s
 :::
 # lineares VC - git-blame
 `git blame <file>` - zeigt für jede Zeile an, wer diese zuletzt bearbeitet hat
 
 Optionen:
-- `-L <hunk>` begrenzt die Ausgabe auf einen Bereich, analog zu `git log -L`
-- `-w` ignoriert Whitespace-Änderungen
-- `-C` ignoriert Commits, in denen die Zeile nur verschoben und nicht geändert wurde. Kann bis zu dreimal angegeben werden, um mehr Commits zu durchsuchen
+
+* `-L <hunk>`: begrenzt die Ausgabe auf einen Bereich
+* `-w`: ignoriert Whitespace-Änderungen
+* `-C`: ignoriert Commits, in denen die Zeile nur verschoben und nicht geändert wurde
+
+::: notes
+* `-L`: analog zu `git log -L`
+* `-C`: bis zu dreimal angeben um mehr Commits zu durchsuchen
+:::
+
 # lineares VC - git-config
+`git config` - Konfiguration von git
+
+Verschiedene Unterbefehle:
+
+* `git config get <key>`: liest einen Wert
+* `git config list`: zeigt alle Werte
+* `git config set <key> <value>`: setzt einen Wert
+
+Optionen:
+
+* `--global`: betrachtet globale Einstellungen
+
+::: notes
+* key-value-pairs, kein schutz vor rechtschreibfehlern
+* global -> für den nutzer, default ist --local -> repository spezifisch
+:::
 <!-- undo -->
+# lineares VC - Änderungen Rückgängig machen
+![By Scott Chacon - Own work, https://x.com/chacon/status/1699346208618127745](venn.jpg)
+
 # lineares VC - git-reset
+`git reset [<commit>] <path...>` - setzt den Stand der angegeben Pfade im Index auf den Stand im angegebenen Commit zurück
+
+Optionen:
+
+* `-p` `--patch`: um interaktiv Änderungen auszuwählen
+
+::: notes
+* undo git add: set files in index to state of earlier commits (default HEAD)
+:::
+
+# lineares VC - git-reset
+`git reset [<mode>] [<commit>]` - Ändert HEAD auf `<commit>`
+
+Modi:
+
+* `--soft`: lässt Index und Working Tree unverändert
+* `--mixed`: (default) ändert Index, aber nicht Working Tree
+* `--hard`: ändert Index und Working Tree
+* `--keep`: wie `--hard`, behält lokale Änderungen bei
+
+::: notes
+* --keep: Working Tree wird geändert für alle Dateien mit Differenz HEAD <> commit, wenn lokale Änderungen --> Abbruch
+:::
+
 # lineares VC - git-restore
+`git restore <path...>` - Setzt Dateien im Working Tree auf eine frühere Version zurück
+
+Quelle:
+
+* Option `--source=<commit>`
+* HEAD, falls `--staged` angegeben ist
+* sonst Index
+
+# lineares VC - git-restore
+Optionen:
+
+* `-S` `--staged`: Ändert auch den Index
+* `-W` `--worktree`: Ändert den Working Tree
+* `-p` `--patch`: interaktive Auswahl der Änderungen
+* `--source=<commit>`: andere Quelle
+
+::: notes
+* -S -W kann genutzt werden, um Index und Working Tree rückgängig zu machen
+:::
+
 # lineares VC - git-revert
+
+
+
 <!-- stash -->
 # lineares VC - git-stash
 
@@ -285,6 +382,7 @@ Optionen:
 --allow-unrelated-history
 
 # branching - git-rebase
+Übung: commit --fixup && rebase --autosquash
 # branching - git-cherry-pick
 
 # Submodule
