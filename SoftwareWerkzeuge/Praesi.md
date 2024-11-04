@@ -368,8 +368,21 @@ Optionen:
 :::
 
 # lineares VC - git-revert
+`git revert <commit...>` - macht Commits rückgängig
 
+Optionen:
 
+* `-n` `--no-commit`: ändert Index und Working Tree, erzeugt jedoch keinen Commit
+* während der Ausführung: `--continue` | `--skip` | `--quit` | `--abort`
+
+::: notes
+* erfordert cleanen Working Tree (keine Änderungen zu HEAD)
+* erzeugt neue Commits, die die Änderungen der angegebene Rückgängig machen
+* --continue macht mit nächstem commit weiter
+* --skip überspringt commit
+* --quit gegenteil von --continue
+* --abort abbruch, macht alle änderungen dieses befehls rückgängig 
+:::
 
 <!-- stash -->
 # lineares VC - git-stash
