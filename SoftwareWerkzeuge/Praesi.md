@@ -149,7 +149,31 @@ Unter Windows: `git config set --global core.autocrlf true`
 
 <!-- essentials -->
 # lineares VC - git-init
+`git init` - initialisiert neues repository
+
+Optionen:
+
+* `-b <branch>` `--initial-branch=<branch>`: setzt namen des initialen branches
+* `git -C <dir> init`: anderes working directory
+
+::: notes
+* aktuelles working directory als neues repository
+* -C ist option von git selbst um cwd des subcommands zu ändern
+:::
+
 # lineares VC - git-status
+`git status` - zeigt status des working trees
+	
+Optionen:
+
+* `-s` `--short`: kurze Ausgabe
+* `-b` `--branch`: zeigt aktuellen Branch an
+* `--ignored`: zeigt ignorierte Pfade an
+
+::: notes
+* --long als default, überschreibt -s
+* -b nur relevant bei -s
+:::
 
 # lineares VC - git-add
 
@@ -261,11 +285,14 @@ Je nach Argumenten können verschiedene Ausgaben erreicht werden:
 * `git log -L <hunk>`: Historie eines Bereichs
     * Bereich: `<start>,<end>:<file>` oder `:<funcname>:<file>`
 * `git log [--follow] <file>`: Historie einer Datei
+* `git log -S<string>`: Die Spitzhacke
 
 ::: notes
 * ohne optionen: zeigt, beginnend bei HEAD, alle direkten Vorgänger an, bis hin zum initialen Commit
 * `<commit1>..<commit2>` zeigt alle Commits NACH `<commit1>` bis `<commit2>` an
 * Mit `--follow` werden Umbenennungen der Datei mit beachtet
+* Spitzhacke: filtert nach commits in denen sich die Häufigkeit von &lt;string&gt; ändert -> nur verschiebungen werden ignoriert, riskiert aber nicht alles zu finden -> -G&lt;string&gt; nutzen -> -G ist immer regex
+* --pickaxe-regex für regex search
 :::
 
 # lineares VC - git-log
@@ -273,6 +300,7 @@ Optionen:
 
 * `--graph`: zeichnet einen Graphen links von der Ausgabe
 * `-n <number>`: limitiert die Ausgabe auf `<number>` Commits
+* `--reverse`: umgekehrte Reihenfolge
 <!-- Nützlich -->
 
 # lineares VC - git-tag
@@ -386,9 +414,86 @@ Optionen:
 
 <!-- stash -->
 # lineares VC - git-stash
+`git stash` - verwaltet unversionierte Änderungen
+
+Subcommands:
+
+* `list`: listet Einträge
+* `show [<stash>]`: zeigt Änderungen in einem Eintrag
+* `push` (default): erzeugt einen neuen Eintrag
+* `apply [<stash>]`: wendet einen Eintrag auf den Working Tree an
+* `drop [<stash>]`: löscht einen Eintrag
+* `pop [<stash>]`: wie `apply` + `drop`
+
+::: notes
+* ein stash speichert Änderungen von Index + Working Tree relativ zu HEAD
+* sind commits, die nicht in der Historie vorkommen
+* spezielle Referenz stash, angabe über stash@{&lt;num&gt;} oder nur zahl
+* wenn keine angabe -> neuster stash
+* push: Änderungen werden weggespeichert, danach wird Index + Working Tree auf HEAD zurückgesetzt
+* pop / apply: wendet gespeicherte änderungen auf working tree an
+* kann fehlschlagen (HEAD hat sich geändert) -> merge conflict muss resolved werden -> stash wird nicht gelöscht
+* git stash clear um alle zu löschen
+* git push -m &lt;msg&gt; um aussagekräftigere Nachricht zu setzen
+:::
+
+# branching
+
+TODO: (Merge) Konflikte lösen
+
+Möglichkeiten einen Branch zu erzeugen:
+
+* `git branch <name>`
+* `git checkout -b <name>`
+* `git switch -c <name>` 
 
 # branching - git-branch
+`git branch` - verwaltet Branches
+
+* `git branch -l` - listet Branches
+* `git branch <branch> [<commit>]` - erstellt neuen Branch
+* `git branch -m <old> <new>` - bennent einen Branch um
+* `git branch -d <branch>` - löscht einen Branch
+
+::: notes
+* branches sind benannte referenzen auf commits
+* HEAD zeigt (meist) auf einen branch, dieser ändert sich automatisch bei git commit
+* neu erstellter Branch: HEAD ändert sich nicht -> man bleibt auf altem Branch
+:::
+
+# branching - git-branch
+
+Optionen:
+
+* `--sort=-committerdate`: zeigt aktuelle Branches zuerst
+* `-M`: `-m` mit force
+* `-c` `-C`: wie `-m` `-M`, jedoch wird kopiert
+
+::: notes
+* branches sind benannte referenzen auf commits
+* HEAD zeigt (meist) auf einen branch, dieser ändert sich automatisch bei git commit
+* neu erstellter Branch: HEAD ändert sich nicht -> man bleibt auf altem Branch
+:::
+
 # branching - git-checkout
+`git checkout` - wechselt Branches
+
+* `git checkout <branch>` - wechselt zu Branch
+* `git checkout --detach <commit>` - wechselt als detached HEAD zu commit
+* `git chekcout -b <branch>` - erstellt neuen Branch und wechselt dorthin
+* `git checkout [<commit>] <path...>` - überschreibt lokale Dateien
+
+::: notes
+* --detach: detached HEAD -> HEAD zeigt nicht auf branch, sondern direkt auf commit -> keine neuen commits möglich -> kann verwendet werden, um stand zu altem zeitpunkt anzuschauen -> muss mit git checkout &lt;branch&gt; beendet werden, um wieder arbeiten zu können
+* mit &lt;path...&gt; eher wie git restore: ohne angbe von &lt;commit&gt;: Index -> Worktree, mit Angabe von commit: commit -> Index + Worktree
+:::
+
+# branching - git-checkout
+Optionen:
+
+* `-f` `--force`: überschreibt lokale Änderungen
+* `-m` `--merge`: ermöglicht three-way-merge
+
 # branching - git-switch
 `git switch <branch>` - wechsel den Working-Tree zu `<branch>`
 
