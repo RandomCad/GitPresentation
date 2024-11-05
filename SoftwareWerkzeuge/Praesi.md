@@ -395,8 +395,46 @@ Optionen:
 --allow-unrelated-history
 
 # branching - git-rebase
+
 Übung: commit --fixup && rebase --autosquash
+
 # branching - git-cherry-pick
+`git cherry-pick <commit...>` - versucht die Änderungen der Commits auf den eigenen HEAD anzuwenden. Es wird für jeden Commit dafür ein neuer Commit erzeugt.  
+
+Sollte einer der Commits nicht anwendbar sein, bleibt der eigenen HEAD und Working-Tree beim forherigen erfolgreichen Commit stehen. 
+Daraufhin werden die nicht automatisch mergbare angaben im Working-Tree mit der standart Mergangaben ausgegeben.
+
+::: notes
+* erfordert cleanen Working Tree (keine Änderungen zu HEAD)
+* erzeugt neue Commits über HEAD, welche die änderungen der angegeben Commits beinhaltet
+:::
+# branching - git-cherry-pick
+
+Optionen:
+
+* `-e`: ermöglicht das editieren der Commitmassage jedes Commits for dem einfügen diese
+* `-x`: fügt in der Commitmassag eine Zeile hinzu, in welcher angegeben wird, von wo der Commit per cheripick eingefügt wurd.
+
+::: notes
+* Optionen erläutern
+:::
+
+# branching - git-cherry-pick
+
+Optionen:
+
+* `--empty=(drop|keep|stop): wie soll mit commits umgegeange werden, die in meinem verlauf berits existieren/keine änderung herbei führen.
+
+* während der Ausführung: `--continue` | `--skip` | `--quit` | `--abort`
+
+::: notes
+* Optionen erläutern
+* nach einem mergconflick können verwendet werden.
+* --continue macht mit nächstem commit weiter
+* --skip überspringt commit
+* --quit gegenteil von --continue
+* --abort abbruch, macht alle änderungen dieses befehls rückgängig 
+:::
 
 # Submodule
 Es ist nicht ungewöhnlich, dass man ein anderes Repository in sein eigenes Repository einbinden möchte. 
