@@ -266,6 +266,7 @@ static/*
 * `<commit>`: Commit <-> Working Tree
 * `<commit> <commit>`: Commit 1 <-> Commit 2
 
+# lineares VC - git-diff
 Optionen:
 
 * `--word-diff`: zeigt Änderungen innerhalb einer Zeile an
@@ -284,6 +285,9 @@ Je nach Argumenten können verschiedene Ausgaben erreicht werden:
 * `git log <commit1>..<commit2>`: Spanne an Commits
 * `git log -L <hunk>`: Historie eines Bereichs
     * Bereich: `<start>,<end>:<file>` oder `:<funcname>:<file>`
+
+# lineares VC - git-log
+
 * `git log [--follow] <file>`: Historie einer Datei
 * `git log -S<string>`: Die Spitzhacke
 
@@ -295,7 +299,6 @@ Je nach Argumenten können verschiedene Ausgaben erreicht werden:
 * --pickaxe-regex für regex search
 :::
 
-# lineares VC - git-log
 Optionen:
 
 * `--graph`: zeichnet einen Graphen links von der Ausgabe
@@ -422,6 +425,10 @@ Subcommands:
 * `show [<stash>]`: zeigt Änderungen in einem Eintrag
 * `push` (default): erzeugt einen neuen Eintrag
 * `apply [<stash>]`: wendet einen Eintrag auf den Working Tree an
+
+# lineares VC - git-stash
+Subcommands:
+
 * `drop [<stash>]`: löscht einen Eintrag
 * `pop [<stash>]`: wie `apply` + `drop`
 
