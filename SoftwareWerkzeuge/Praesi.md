@@ -395,6 +395,46 @@ Optionen:
 --allow-unrelated-history
 
 # branching - git-rebase
+`git rebase <upstream>` - verschiebe die commits der Branch and den Kopf von `<upstream>`
+
+Erzeuge dafür neue Commits ab dem HEAD von `<upstream>`
+
+::: notes
+erkläre mit diesen abbildern 
+          A---B---C topic
+         /
+D---E---F---G master
+              A'---B'---C' topic
+             /
+D---E---F---G master
+:::
+
+# branching - git-rebase
+Optionen:
+
+* `--onto <newbase> <upstream> <branch>`: Verschiebt die Commits zwischen `<upstream>` und `<branch>` auf newbase.
+* `--keep-base`: setzt die kommits von der Branch nicht an das Ende von Upstream sondern behält den basiskommit bei.
+
+::: notes
+    o---o---o---o---o  master
+        |            \
+        |             o'--o'--o'  topic
+         \
+          o---o---o---o---o  next
+
+git rebase --onto master next topic
+:::
+
+# branching - git-rebase
+Optionen:
+
+* `--autosquash`: füge alle commits, welche als "squash!", "fixup!" oder "amand!" declariert sind zu den entsprechenden Commits hinzu. 
+* `--autostash`: führt for dem rebas ein stash aus und popt diesen nach dem erfolgreichen rebase.
+
+
+::: notes
+autosquash - fast commits zusammen, welche spezielle commit werte haben.
+:::
 
 Übung: commit --fixup && rebase --autosquash
 
