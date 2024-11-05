@@ -390,9 +390,39 @@ Optionen:
 # branching - git-branch
 # branching - git-checkout
 # branching - git-switch
-# branching - git-merge
+`git switch <branch>` - wechsel den Working-Tree zu `<branch>`
 
---allow-unrelated-history
+Optionen:
+
+* `-c` `--creat`: erstelle eine neue branch mit namen `<branch>` von dieser stelle aus.
+* `-d` `--detach`: wechsle zum commit `<branch>` und gehe in den DETACHEDHEAD-zustand.
+* `-m` `--merge`: führe einen Merge mit den actuellen Working-Tree daten durch um diese in die neue Branch zu übertragen
+
+::: notes
+macht das was checkout machen sollte. 
+:::
+
+# branching - git-merge
+`git merge <branch>` - erfasse die änderungen bis zu branch und führe diese Änderungen in einem einzelnem Commit aus.
+
+Es ist empfehenswert keine änderungen im Working-Tree zu haben.
+
+::: notes
+* keine änderungen, da diese bei einem Mergkonflick und abort nicht korrekt zurückgespielt werden könnten
+:::
+
+# branching - git-merge
+Optionen:
+
+* `--no-commit`: stope for dem Commit. Dadurch können for dem kommit noch änderungen forgenommen werden
+* `-e`: öffne einen Edito um die Merge message bearbeiten zu können
+* `--squash`: der erzeugte end commit muss händisch ausgeführt werden und refernziert den letzten commit der branch nicht. 
+
+# branching - git-merge
+Optionen:
+
+* `--allow-unrelated-history`: standartmäsig wird es nicht erlaubt zwei branches zu merge, die keinen gemeinsammen forfahren haben. Dies überschreibt dieses Verhalten.
+* während der Ausführung: `--continue` | `--skip` | `--quit` | `--abort`
 
 # branching - git-rebase
 `git rebase <upstream>` - verschiebe die commits der Branch and den Kopf von `<upstream>`
