@@ -64,12 +64,11 @@ Hat dieser noch andere Branches als deine eigene?
 Schau dir einige von diesen an versuche dazu unterschiedliche Kommandos zu wechseln zu verwenden.
 
 ### Übung 7
-Entscheide dich für eine Interesante Branch aus Übung 5. 
-Merge die Änderungen in diesem Branch in deinen eigenen Branch hinein. 
-Pushe das Ergebnis mit auf den Server.
+Versuche Branches diner Kommilitonen mit deiner eigenen zu vereinen. 
+Probiere dafür sowohl Merging als auch Rebasing aus. 
+Versuche auch eine einzelne Änderung in deine Branch einzuführen.
 
-### Übung 8
-Verwende nun `git rebase` um deine Änderungen auf einen dritten Branch zu rebasen. 
-Pushe erneut das Ergebnis.
-
+## Zusatz
+Clone das LLVM repository und verbrauche dabei so wenig Speicher für Git wie möglich. 
+Wir möchten aber dazu fähig sein LLVM in den Aktuelsten versionen zu Kompilieren (Version 16 aufwärtz)
 
