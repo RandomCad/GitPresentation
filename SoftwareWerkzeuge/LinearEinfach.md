@@ -110,14 +110,13 @@ Optionen für `git show`:
 
 # lineares VC - .gitignore
 Eine .gitignore Datei gibt Pfade an, die von git ignoriert werden sollen. Jedes Verzeichnis kann eine eigene .gitignore haben.
-```shell
-# ignore object files
-*.o
-# ignore everything in folder static,
-static/*
-# but not this file
-!static/favicon.ico
-```
+
+`# ignore object files`  
+`*.o`  
+`# ignore everything in folder static,`  
+`static/*`  
+`# but not this file`  
+`!static/favicon.ico`  
 
 # lineares VC - git-diff
 

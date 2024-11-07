@@ -1,13 +1,14 @@
 <!--compile with: pandoc --from=markdown+grid_tables --number-sections --to=pdf -o ~/test.pdf -V geometry:margin=1in -->
-# Übung
+# Übungen
 ## Github Zugriff
 
 Wer uns im voraus ihren Github Usernamen mitgeteilt hat, sollte auf das Übungs-Repository zugreifen können.
 Alle andern können für die Übung "meinen" Account verwenden. 
 Wenn ihr einen Push durchführen wollt und euch bei Github noch nicht angemeldet habt, werdet ihr nach Username und Password gefragt.
 Dort ist folgendes einzugeben:
-- Username: RandomCad
-- Passwort: <todo>
+
+* Username: RandomCad
+* Passwort: <todo>
 
 ## Lineares VCS
 ### Übung 1
@@ -15,29 +16,30 @@ Erstelle ein neues Repository mit `git init`.
 
 Erzeugt mit `git status` eine Ausgabe, die folgendermaßen aussieht:
 
-<code>
-## <font color="green">main</font>...<font color="red">origin/main</font><br>
-<font color="green">M</font><font color="red">M</font>
-&lt;some path&gt;<br>
-<font color="green">A</font><font color="red">D</font>
-&lt;some path&gt;<br>
-<font color="red">!!</font> &lt;some path&gt;
-</code>
+`##` \textcolor{green}{main}`...`\textcolor{red}{origin/main}
+
+\textcolor{green}{M}\textcolor{red}{M}
+`<some path>`
+
+\textcolor{red}{A}\textcolor{red}{D}
+`<some path>`
+
+\textcolor{red}{!!} `<some path>`
 
 ### Übung 2
 Aufgabe:
 Erzeuge mehrere Commits, durch die die Optionen `-C -C -C` bei `git blame` und `--follow` bei `git log` eine Änderung in der Ausgabe bewirken.
 
-# Übung 3 
-- commit1
-- commit2, der commit1 rückgängig macht
-- beide commits aus history entfernen
+### Übung 3 
+* Erstelle einen fehlerhaften Commit
+* Befinde ihn für so schlecht, dass du ihn mit einem neuen Commit rückgängig machst
+* Befinde ihn für so schlecht, dass du beide Commits aus der Historie entfernst
 
-# Übung 4
+### Übung 4
 
 Ändere eine Datei in deinem Repository. 
-Frage deinen Nachbarn nach einer neuen Änderung. Commit nur die Änderung deines Nachbarn mit commit -a. 
-Commit jetzt deine ursprüngliche Änderung. Deine History sollte wie folgt aussehen:
+Frage deinen Nachbarn nach einer neuen Änderung. Commite nur die Änderung deines Nachbarn mit `git commit -a`. 
+Commite jetzt deine ursprüngliche Änderung. Deine History sollte wie folgt aussehen:
 
 ```
 -<nachbarn commit>-<commit mit den vorherigen Änderungen>-
@@ -45,23 +47,29 @@ Commit jetzt deine ursprüngliche Änderung. Deine History sollte wie folgt auss
 
 Was passiert, wenn dein Nachbar an der gleichen Stelle wie du Änderungen vornimmt?
 
-# Übung 5
+## Branching & Remotes
+### Übung 5
+* Erstelle einen fehlerhaften Commit
+* Verschiebe ihn an eine frühere Stelle der Versionshistorie (d.h. `A <- BAD <- B <- C (HEAD)`)
+* korrigiere den Commit über `git rebase --autosquash`
+
+### Übung 6
 Verschiebe deine bisherigen änderungen mit `git branch -M <name>` auf einen Branch mit deinem namen. 
 Füge den folgenden Server als Remote mit dem Namen `origin` hinzu:
-git@github.com:RandomCad/Uebung_1.git
-pushe nun deine branch auf den server.
+`git@github.com:RandomCad/Uebung_1.git`.
+Pushe nun deinen Branch auf den Server.
 
-Beschaffe dir nun die aktuellsten daten vom Server. 
+Beschaffe dir nun die aktuellsten Daten vom Server. 
 Hat dieser noch andere Branches als deine eigene? 
-Schau dir einige von diesen an versuche dazu unterschiedliche Commandos zu wechseln zu verwenden.
+Schau dir einige von diesen an versuche dazu unterschiedliche Kommandos zu wechseln zu verwenden.
 
-# Übung 6
+### Übung 7
 Entscheide dich für eine Interesante Branch aus Übung 5. 
-Merge die änderungen in dieser branch in deine eigen Branch hinein. 
-Pushe das ergebniss mit auf den server.
+Merge die Änderungen in diesem Branch in deinen eigenen Branch hinein. 
+Pushe das Ergebnis mit auf den Server.
 
-# Übung 7
-Verwende nun rebase um deine Änderungen auf eine Dritte Branch zu rebasen. 
-Pushe erneut das ergebniss.
+### Übung 8
+Verwende nun `git rebase` um deine Änderungen auf einen dritten Branch zu rebasen. 
+Pushe erneut das Ergebnis.
 
 

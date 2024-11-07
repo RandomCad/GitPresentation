@@ -123,6 +123,7 @@ Subcommands:
 
 * `drop [<stash>]`: löscht einen Eintrag
 * `pop [<stash>]`: wie `apply` + `drop`
+* `branch`: wandelt den Stash in einen Branch um
 
 ::: notes
 * ein stash speichert Änderungen von Index + Working Tree relativ zu HEAD
