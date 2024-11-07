@@ -56,7 +56,10 @@ Was passiert, wenn dein Nachbar an der gleichen Stelle wie du Änderungen vornim
 ### Übung 6
 Verschiebe deine bisherigen änderungen mit `git branch -M <name>` auf einen Branch mit deinem namen. 
 Füge den folgenden Server als Remote mit dem Namen `origin` hinzu:
-`git@github.com:RandomCad/Uebung_1.git`.
+
+* `ssh://git@github.com:RandomCad/Uebung_1.git`
+* `https://github.com:RandomCad/Uebung_1.git`
+
 Pushe nun deinen Branch auf den Server.
 
 Beschaffe dir nun die aktuellsten Daten vom Server. 
@@ -64,11 +67,11 @@ Hat dieser noch andere Branches als deine eigene?
 Schau dir einige von diesen an versuche dazu unterschiedliche Kommandos zu wechseln zu verwenden.
 
 ### Übung 7
-Versuche Branches diner Kommilitonen mit deiner eigenen zu vereinen. 
+Versuche Branches deiner Kommilitonen mit deinen eigenen zu vereinen. 
 Probiere dafür sowohl Merging als auch Rebasing aus. 
 Versuche auch eine einzelne Änderung in deine Branch einzuführen.
 
 ## Zusatz
-Clone das LLVM repository und verbrauche dabei so wenig Speicher für Git wie möglich. 
-Wir möchten aber dazu fähig sein LLVM in den Aktuelsten versionen zu Kompilieren (Version 16 aufwärtz)
+Clone das LLVM Repository und verbrauche dabei so wenig Speicher für Git wie möglich. 
+Wir möchten aber dazu fähig sein LLVM in der aktuellsten Version zu Kompilieren (Version 16 aufwärts)
 

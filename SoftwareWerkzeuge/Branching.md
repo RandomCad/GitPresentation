@@ -1,6 +1,6 @@
 # branching
 
-Bei einem Mergconflik werden die Unterschiede im Working-Tree wie folgt angezeigt:
+Bei einem Mergekonflikt werden die Unterschiede im Working-Tree wie folgt angezeigt:
 
 `<umgebung>`  
 `<<< deins`  
