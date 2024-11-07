@@ -1,12 +1,28 @@
 # branching
 
-TODO: (Merge) Konflikte lösen
+Bei einem Mergconflik werden die Unterschiede im Working-Tree wie folgt angezeigt:
+
+`<umgebung>`  
+`<<< deins`  
+`<die lokalen Änderungen>`  
+`===`  
+`<die Änderungen der anderen Branch>`  
+`>>> ende`  
+`<umgebung>`    
+
+::: notes
+was ist merging und wie funktioniert das!
+* Div von beiden seiten und das dann versuchen automatisch zusammen zu fügen
+:::
+
+# branching
 
 Möglichkeiten einen Branch zu erzeugen:
 
 * `git branch <name>`
 * `git checkout -b <name>`
 * `git switch -c <name>` 
+* `git stash branch`
 
 # branching - git-branch
 `git branch` - verwaltet Branches
