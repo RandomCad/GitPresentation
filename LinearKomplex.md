@@ -1,7 +1,7 @@
 # lineares VC - git-tag
 `git tag` - Erstellt, löscht und listet Tags.
 
-* `git tag <name> [<commit>]`: erstellt einen neuen commit
+* `git tag <name> [<commit>]`: erstellt einen neuen tag
 * `git tag -l [<pattern>]`: listet commits, die pattern entsprechen
 * `git tag -d <name>`: löscht einen tag
 
@@ -117,6 +117,18 @@ Subcommands:
 * `show [<stash>]`: zeigt Änderungen in einem Eintrag
 * `push` (default): erzeugt einen neuen Eintrag
 * `apply [<stash>]`: wendet einen Eintrag auf den Working Tree an
+
+::: notes
+* ein stash speichert Änderungen von Index + Working Tree relativ zu HEAD
+* sind commits, die nicht in der Historie vorkommen
+* spezielle Referenz stash, angabe über stash@{&lt;num&gt;} oder nur zahl
+* wenn keine angabe -> neuster stash
+* push: Änderungen werden weggespeichert, danach wird Index + Working Tree auf HEAD zurückgesetzt
+* pop / apply: wendet gespeicherte änderungen auf working tree an
+* kann fehlschlagen (HEAD hat sich geändert) -> merge conflict muss resolved werden -> stash wird nicht gelöscht
+* git stash clear um alle zu löschen
+* git push -m &lt;msg&gt; um aussagekräftigere Nachricht zu setzen
+:::
 
 # lineares VC - git-stash
 Subcommands:

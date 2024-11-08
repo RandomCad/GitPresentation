@@ -120,7 +120,7 @@ Eine .gitignore Datei gibt Pfade an, die von git ignoriert werden sollen. Jedes 
 
 # lineares VC - git-diff
 
-`git diff [-- <path...>]` - zeigt die Unterschiede zwischen verscshiedenen Versionen von Dateien an.
+`git diff [-- <path...>]` - zeigt die Unterschiede zwischen verschiedenen Versionen von Dateien an.
 
 * ohne optionen: Index <-> Working Tree
 * `--cached [<commit>]`: Index <-> Commit (HEAD, falls kein Commit angegeben)

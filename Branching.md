@@ -57,7 +57,7 @@ Optionen:
 
 * `git checkout <branch>` - wechselt zu Branch
 * `git checkout --detach <commit>` - wechselt als detached HEAD zu commit
-* `git chekcout -b <branch>` - erstellt neuen Branch und wechselt dorthin
+* `git checkout -b <branch>` - erstellt neuen Branch und wechselt dorthin
 * `git checkout [<commit>] <path...>` - überschreibt lokale Dateien
 
 ::: notes
@@ -147,8 +147,6 @@ Optionen:
 ::: notes
 autosquash - fasst commits zusammen, welche spezielle commit nachrichten haben -> erstellt mit commit --fixup
 :::
-
-Übung: commit --fixup && rebase --autosquash
 
 # branching - git-cherry-pick
 `git cherry-pick <commit...>` - versucht die Änderungen der Commits auf den eigenen HEAD anzuwenden. Es wird für jeden Commit dafür ein neuer Commit erzeugt.  

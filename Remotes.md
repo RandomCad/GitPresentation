@@ -63,7 +63,7 @@ Holt die Remotes und versucht deren Änderungen zu übernehmen.
 Optionen:
 
 * `--all` - Aktualisiert alle Refernenzen, nicht nur die im aktuellen Verzeichnisbaum.
-* `--foce` - Aktualisiert den Server, auch wenn dabei Daten verloren gehen.
+* `--force` - Aktualisiert den Server, auch wenn dabei Daten verloren gehen.
 * `--force-with-lease` - Aktualisiert den Server auch wenn Daten verloren gehen, aber nur wenn die Serverreferenz mit der lokalen übereinstimmt.
 
 ::: notes
@@ -118,7 +118,7 @@ Aus diesem Grund hat Microsoft viel in die Optimierung von großen Repositories 
 Erwähnenswert sind folgende Befehle:
 
 * `scalar` -> Befehl der obersten Ebene, hinter dem eine Reihe von Unterbefehlen stehen
-* `git-maintenanc` -> Führt periodisch Aufräum- und Prefetch-Aufgaben aus -> beschleunigt die Arbeit mit Git
+* `git-maintenance` -> Führt periodisch Aufräum- und Prefetch-Aufgaben aus -> beschleunigt die Arbeit mit Git
 
 ::: notes
 scalar
